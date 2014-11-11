@@ -1,0 +1,120 @@
+block()
+    display block
+
+inline-block()
+    display inline-block
+    display -moz-inline-stack
+    vertical-align baseline
+
+    if ie-support
+        zoom: 1
+        *display: inline
+        *vertical-align: auto;
+
+hide()
+    display: none
+
+center()
+    text-align: center
+
+/*
+ * Basic clearfix mixin
+ * e.g. clearfix()
+ */
+clearfix()
+    block()
+
+    &:after
+        content: "."
+        block()
+        height: 0
+        clear: both
+        visibility: hidden
+
+/*
+ * Size mixin
+ * e.g size: 20px 10px => width: 20px; height: 10px
+ * e.g size(50px) => width: 50px; height: 50px
+ */
+size(numbers...)
+    regex = '^[^%]*%[^%]*$'
+    parsed = unit(numbers[0])
+    type = match(regex, parsed) ? '%' : 'px'
+
+    if length(numbers) > 1
+        parsedH = unit(numbers[1])
+        typeH = match(regex, parsedH) ? '%' : 'px'
+
+        width: unit(numbers[0], type)
+        height: unit(numbers[1], typeH)
+    else
+        width: unit(numbers, type)
+        height: unit(numbers, type)
+
+/*
+ * Position helper
+ */
+-pos(type, args)
+    i = 0
+    position: unquote(type)
+    if args
+        {args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+        {args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+
+/*
+ * Position mixins
+ * e.g. absolute: top 5px left 40px
+ */
+absolute()
+    -pos('absolute', arguments)
+
+relative()
+    -pos('relative', arguments)
+
+fixed()
+    -pos('fixed', arguments)
+
+/*
+ * Prefix helper
+ * e.g. -prefix(border-radius, 3px) => all vendor list (check 'settings') based properties
+ */
+-prefix(prop, val)
+    for prefix in vendors
+        if prefix == official
+            {prop}: val
+        else
+            -{prefix}-{prop}: val
+
+/*
+ * Background mixin
+ * e.g. bg: 'logo.png' (with specified img-path in 'settings')
+ * e.g. bg: '../img/logo.png' 100px 50px
+ */
+bg(path, args...)
+    args = unquote('no-repeat') unless args
+    background: url(img-path path) args
+
+/*
+ * Background mixin for retina displays
+ *
+ * use it together with '@media all and (-webkit-min-device-pixel-ratio: 1.5)'
+ */
+bg-retina(path, args...)
+    bg: path, args
+    background-size: contain
+
+/*
+ * Make single text line overflow
+ * e.g. text-overflow: 200 ellipsis
+ */
+text-overflow(width, type = ellipsis)
+    parsed = unit(width)
+    units = match('^[^%]*%[^%]*$', parsed) ? '%' : 'px'
+
+    text-overflow: type
+    white-space: nowrap
+    overflow: hidden
+    width: unit(width, units)
+
+round()
+    -prefix(border-radius, 100%)
