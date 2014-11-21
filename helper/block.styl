@@ -1,0 +1,19 @@
+block()
+    display: block
+
+inline-block()
+    display: inline-block
+    display: -moz-inline-stack
+    vertical-align: baseline
+
+    if ie-support
+        zoom: 1
+        *display: inline
+        *vertical-align: auto
+            
+
+hide()
+    display: none
+
+center()
+    text-align: center
