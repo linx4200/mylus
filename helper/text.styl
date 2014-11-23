@@ -27,3 +27,12 @@ replace-text(image, x=50%, y=50%)
   background-image image
   background-repeat no-repeat
   background-position x y
+  
+/*
+ * Ellipsis with wrapping disabled by default.
+ */
+ellipsis(no-wrap = true)
+  if no-wrap
+    white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis

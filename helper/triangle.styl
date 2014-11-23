@@ -1,0 +1,46 @@
+/*
+ * triangle mixin
+ * e.g. triangle: 100px 200px, $000, up (宽度是三角形的底边, 高度的三角形的高)
+ * e.g. triangle: 100px, $000 #00f, up (三角形颜色, 背景色)
+ * triangle: 底边长[ 高], 颜色[ 背景色], 形状
+ * 需要用到direction-values中重写的border属性
+ */
+
+triangle($size, $color, $direction)
+    height: 0
+    width: 0
+
+    $width = $size[0]
+    $height = $size[length($size)-1]
+
+    $foreground-color = $color[0]
+    $background-color =  length($color) == 2 ? $color[1] : transparent
+
+    if($direction == 'up' || $direction == 'down' || $direction == 'right' || $direction == 'left')
+        $width = ($width / 2)
+        $height = length($size) > 1 ? unit($height, 'px') : unit(($height / 2), 'px')
+      
+     if($direction == 'up')
+        border: null, $width solid $background-color, $height solid $foreground-color
+     else if ($direction == 'right')
+        border: $width solid $background-color, null, $width solid $background-color, $height solid $foreground-color
+     else if ($direction == 'down')
+        border: $height solid $foreground-color, $width solid $background-color, null
+     else if ($direction == 'left')
+        border: $width solid $background-color, $height solid $foreground-color, $width solid $background-color,null
+    
+   else if ($direction == 'up-right' || $direction == 'up-left')
+    border-top: $height solid $foreground-color
+    
+    if($direction == 'up-right')
+        border-left: $width solid $background-color
+     else if($direction == 'up-left')
+        border-right: $width solid $background-color
+    
+   else if ($direction == 'down-right' || $direction == 'down-left')
+    border-bottom: $height solid $foreground-color
+
+        if($direction == 'down-right')
+        border-left: $width solid $background-color
+     else if($direction == 'down-left')
+         border-right: $width solid $background-color

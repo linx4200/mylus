@@ -1,0 +1,93 @@
+/* 合并属性值
+*  margin:10px 10px 10px 10px => margin:10px
+*  margin:10px 20px 40px 20px => margin:10px 20px 40px
+*  margin:10px 20px 10px 20px => margin:10px 20px
+*/
+collapse-directionals($vals)
+  $output = null
+
+  $l = length($vals)
+  $A = $vals[0]
+  $B = $l < 2 ? $A : $vals[1]
+  $C = $l < 3 ? $A : $vals[2]
+  $D = $l < 2 ? $A : $l < 4 ? $vals[1] : $vals[3]
+    
+  if $A == $B && $A == $C && $A == $D
+    $output = $A
+  else if $A == $C && $B == $D
+    $output = $A $B
+  else if $B == $D
+    $output = $A $B $C
+  else
+    $output = $A $B $C $D
+    
+  return $output
+    
+    
+/* 判断是否包含空值(null/false) */   
+contains-falsy($list)
+  for $item in $list
+    if not $item
+      return true
+  return false
+
+directional-property($pre, $suf, args)
+    
+  $vals = args
+    
+  $top = s('%s-top%s', $pre, $suf ? unquote('-' + $suf) : null)
+  $bottom = s('%s-bottom%s', $pre, $suf ? unquote('-' + $suf) : null)
+  $left = s('%s-left%s', $pre, $suf ? unquote('-' + $suf) : null)
+  $right = s('%s-right%s', $pre, $suf ? unquote('-' + $suf) : null)
+  $all = s('%s%s', $pre, $suf ? unquote('-' + $suf) : null)
+  
+  $vals = collapse-directionals($vals)
+  
+  if contains-falsy($vals)
+    
+    if $vals[0]
+      {$top} $vals[0]
+      
+    if length($vals) == 1
+      if $vals[0]
+        {$right} $vals[0]
+    else
+      if $vals[1]
+        {$right} $vals[1]
+    
+    if length($vals) == 2
+      if $vals[0]
+        {$bottom} $vals[0]
+      if $vals[1]
+        {$left} $vals[1]
+    else if length($vals) == 3
+      if $vals[2]
+        {$bottom} $vals[2]
+      if $vals[1]
+        {$left} $vals[1]
+    else if length($vals) == 4
+      if $vals[2]
+        {$bottom} $vals[2]
+      if $vals[3]
+        {$left} $vals[3]
+    
+  else
+    {$all} $vals
+
+border()
+    directional-property(border, null, arguments)
+
+margin()
+    directional-property(margin, null, arguments)
+
+padding()
+    directional-property(padding, null, arguments)
+    
+border-style()
+    directional-property(border, style, arguments)
+
+border-color()
+    directional-property(border, color, arguments)
+
+border-width()
+    directional-property(border, width, arguments)
