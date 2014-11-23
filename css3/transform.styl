@@ -1,0 +1,12 @@
+transform($property = none)
+  //  none | <transform-function>
+  -prefix(transform, $property)
+
+transform-origin($axes = 50%)
+  // x-axis - left | center | right  | length | %
+  // y-axis - top  | center | bottom | length | %
+  // z-axis -                          length
+  -prefix(transform-origin, $axes)
+
+transform-style ($style = flat)
+  -prefix(transform-style, $style)
