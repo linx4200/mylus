@@ -1,0 +1,37 @@
+// http://www.w3.org/TR/css3-animations/#the-animation-name-property-
+// Each of these mixins support comma separated lists of values, which allows different transitions for individual properties to be described in a single style rule. Each value in the list corresponds to the value at that same position in the other properties.
+
+// Official animation shorthand property.
+
+animation($animations...)
+  -prefix(animation, $animations)
+
+// Individual Animation Properties
+animation-name($names...)
+  -prefix(animation-name, $names)
+
+animation-duration($times...)
+  -prefix(animation-duration, $times)
+
+animation-timing-function($motions...)
+    // ease | linear | ease-in | ease-out | ease-in-out
+  -prefix(animation-timing-function, $motions)
+
+animation-iteration-count($values...)
+    // infinite | <number>
+  -prefix(animation-iteration-count, $values)
+
+animation-direction($directions...)
+    // normal | alternate
+  -prefix(animation-direction, $directions)
+
+animation-play-state($states...)
+    // running | paused
+  -prefix(animation-play-state, $states)
+
+animation-delay($times...)
+  -prefix(animation-delay, $times)
+
+animation-fill-mode($modes...)
+    // none | forwards | backwards | both
+  -prefix(animation-fill-mode, $modes)
