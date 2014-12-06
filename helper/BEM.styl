@@ -1,0 +1,67 @@
+/*
+ * BEM mixin
+ */
+
+$elementSeparator = '__'
+$modifierSeparator = '--'
+
+b($block)
+    .{$block}
+        {block}
+
+e($element)
+    {'&' + $elementSeparator + $element}
+        {block}
+        
+m($modifier)
+    {'&' + $modifierSeparator + $modifier}
+        {block}
+        
+
+/*======================================Use==================================
++b(header)
+    width: 100%
+    height: 100px
+    +e(banner)
+        height: 20px
+        +m('black')
+            color: black
+===================================Output===================================
+.header {
+  width: 100%;
+  height: 100px;
+}
+.header__banner {
+  height: 20px;
+}
+.header__banner--black {
+  color: #000;
+}
+===========================================================================*/
+
+
+
+/*============================= TODO ======================================
++b(header)
+    width: 100%
+    height: 100px
+    +m(black)
+        color: black
+        +e(banner)
+            height: 20px
+            
+---------------
+==>
+
+.header {
+  width: 100%;
+  height: 100px;
+}
+.header--black {
+  color: #000;
+}
+.header--black .header__banner {
+  height: 20px
+}
+
+===========================================================================*/
