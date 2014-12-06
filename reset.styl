@@ -63,6 +63,14 @@ reset-table-cell()
   text-align: left
   font-weight: normal
   vertical-align: middle
+  
+reset-border-box()
+  /* apply a natural box layout model to all elements, but allowing components to change */
+  html
+    box-sizing: border-box
+
+  *, *:before, *:after
+    box-sizing: inherit
 
 reset-html5()
   article, aside, canvas, details, figcaption,
@@ -76,3 +84,12 @@ reset-html5()
     *zoom 1
   audio:not([controls]),[hidden]
     display none
+
+reset-webkit()
+    /* 移除 OS X 中 Safari 5 和 Chrome 内部的内边距以及搜索框的取消按钮 */
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration
+    -webkit-appearance: none
+  button,
+  html input[type="button"], input[type="submit"], input[type="search"]
+    -webkit-appearance: none

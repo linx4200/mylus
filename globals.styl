@@ -1,31 +1,8 @@
 /*
- * Global border-box mixin best-practice
- * http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
- * e.g. border-box()
- */
-border-box()
-    html
-        box-sizing border-box
-    *, *:before, *:after
-        box-sizing inherit
-        
-/*
  * Base classes
  * e.g. base-classes()
  */
 base-classes()
-    .clear
-        clear both
-
-    .left
-        float left
-
-    .right
-        float right
-
-    .center
-        center()
-
     .show
         block()
 
