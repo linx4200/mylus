@@ -19,27 +19,25 @@ triangle($size, $color, $direction)
     if($direction == 'up' || $direction == 'down' || $direction == 'right' || $direction == 'left')
         $width = ($width / 2)
         $height = length($size) > 1 ? unit($height, 'px') : unit(($height / 2), 'px')
-      
-     if($direction == 'up')
-        border: null, $width solid $background-color, $height solid $foreground-color
-     else if ($direction == 'right')
-        border: $width solid $background-color, null, $width solid $background-color, $height solid $foreground-color
-     else if ($direction == 'down')
-        border: $height solid $foreground-color, $width solid $background-color, null
-     else if ($direction == 'left')
-        border: $width solid $background-color, $height solid $foreground-color, $width solid $background-color,null
-    
-   else if ($direction == 'up-right' || $direction == 'up-left')
-    border-top: $height solid $foreground-color
-    
-    if($direction == 'up-right')
-        border-left: $width solid $background-color
-     else if($direction == 'up-left')
-        border-right: $width solid $background-color
-    
-   else if ($direction == 'down-right' || $direction == 'down-left')
-    border-bottom: $height solid $foreground-color
 
+        if($direction == 'up')
+            border: null, $width solid $background-color, $height solid $foreground-color
+        else if ($direction == 'right')
+            border: $width solid $background-color, null, $width solid $background-color, $height solid $foreground-color
+        else if ($direction == 'down')
+            border: $height solid $foreground-color, $width solid $background-color, null
+        else if ($direction == 'left')
+            border: $width solid $background-color, $height solid $foreground-color, $width solid $background-color,null
+
+    else if ($direction == 'up-right' || $direction == 'up-left')
+        border-top: $height solid $foreground-color
+        if($direction == 'up-right')
+            border-left: $width solid $background-color
+        else if($direction == 'up-left')
+            border-right: $width solid $background-color
+
+    else if ($direction == 'down-right' || $direction == 'down-left')
+        border-bottom: $height solid $foreground-color
         if($direction == 'down-right')
             border-left: $width solid $background-color
         else if($direction == 'down-left')
