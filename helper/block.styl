@@ -6,7 +6,7 @@ inline-block()
     display: -moz-inline-stack
     vertical-align: baseline
 
-    if ie-support
+    if $ie-support
         zoom: 1
         *display: inline
         *vertical-align: auto
@@ -16,4 +16,5 @@ hide()
     display: none
 
 center()
-    text-align: center
+    left: 50%
+    transform: translateX(-50%)

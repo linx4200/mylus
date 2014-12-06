@@ -3,7 +3,7 @@
  * e.g. -prefix(border-radius, 3px) => all vendor list (check 'settings') based properties
  */
 -prefix(prop, val)
-    for prefix in vendors
+    for prefix in $vendors
         if prefix == official
             {prop}: val
         else
