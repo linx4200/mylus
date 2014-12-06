@@ -3,12 +3,13 @@
  */
 
 bgImage($url)
-  background-image: s('url(%s)', $version is defined ? $url + '?' + $version : url)
-  background-size: (image-size($url)[0] / 2) (image-size($url)[1] / 2)
-  background-repeat: no-repeat
+    background-image: s('url(%s)', $version is defined ? $url + '?' + $version : $url)
+    background-size: (image-size($url)[0] / 2) (image-size($url)[1] / 2)
+    background-repeat: no-repeat
 
 sprite($url, $width, $height, $posX, $posY)
-  width: ($width / 2)
-  height: ($height / 2)
-  bgImage($url)
-  background-position: ($posX/2) ($posY/2)
+    display: inline-block
+    width: ($width / 2)
+    height: ($height / 2)
+    bgImage($url)
+    background-position: ($posX/2) ($posY/2)
