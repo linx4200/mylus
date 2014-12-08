@@ -1,0 +1,7 @@
+scrat-sprite($url)
+    background: url($url + '?__sprite') no-repeat
+    background-size: (image-size($url)[0] / 2) (image-size($url)[1] / 2)
+    
+scrat-inline($url)
+    background: url($url + '?__inline') no-repeat
+    background-size: (image-size($url)[0] / 2) (image-size($url)[1] / 2)
