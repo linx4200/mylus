@@ -1,24 +1,11 @@
 /*
- * Make single text line overflow
- * e.g. text-overflow: 200 ellipsis
- */
-text-overflow(width, type = ellipsis)
-    parsed = unit(width)
-    units = match('^[^%]*%[^%]*$', parsed) ? '%' : 'px'
-
-    text-overflow: type
-    white-space: nowrap
-    overflow: hidden
-    width: unit(width, units)
-    
-/*
  * Hide text.
  */
 hide-text()
   text-indent: 101%
   white-space: nowrap
   overflow: hidden
-  
+
 /*
  * Replace text with an image.
  */
@@ -27,7 +14,7 @@ replace-text(image, x=50%, y=50%)
   background-image image
   background-repeat no-repeat
   background-position x y
-  
+
 /*
  * Ellipsis with wrapping disabled by default.
  */
