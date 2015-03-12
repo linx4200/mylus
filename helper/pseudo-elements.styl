@@ -1,11 +1,11 @@
 /*
  * pseudo-elements mixin
  */
- 
+
 p-el($el, $el-width = null, $el-height = null)
     if($el == 'before' || $el == 'after')
         &
-          position: relative
+          position: relative unless @position
         &::{$el}
           content: ''
           // position: absolute
@@ -27,7 +27,7 @@ p-el($el, $el-width = null, $el-height = null)
   +p-el(before, 1.56em, .125em)
     background: #888c91
     top: .25em
-  
+
   +p-el(after, 1.56em, .125em)
     background: #afb3b5
     bottom: 0
