@@ -1,0 +1,19 @@
+/* http://codepen.io/starikovs/pen/Hilyt */
+
+cross-classic($size = 14px, $color = #777)
+  color: $color
+  font: $size/100% arial, sans-serif
+  &::after
+    content: 'X' /* ANSI X letter */
+
+cross-thin($color)
+  color: $color
+  font: 14px/100% arial, sans-serif
+  &::after
+    content: '×' /* UTF-8 symbol */
+
+cross-thik($color)
+  color: $color
+  font: 14px/100% arial, sans-serif
+  &::after
+    content: '✖' /* UTF-8 symbol */
