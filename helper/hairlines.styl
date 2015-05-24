@@ -1,0 +1,62 @@
+/* http://codepen.io/linx4200/full/rVMbJa */
+/* http://xinranliu.me/2015-05-09-1px-in-retina/ */
+
+hairline-bgimg-gradient($color, $direction = all)
+  if $direction == all
+    border: 1px solid $color
+  else
+    border-{$direction}: 1px solid $color
+  .hairlines &
+    background-repeat: no-repeat;
+    if $direction == all
+      background-image: -webkit-linear-gradient(top, $color 50%, #999 50%), -webkit-linear-gradient(right, transparent 50%, $color 50%), -webkit-linear-gradient(bottom, transparent 50%, $color 50%), -webkit-linear-gradient(left, transparent 50%, $color 50%)
+      background-image: linear-gradient(to top, transparent 50%, $color 50%), linear-gradient(to right, transparent 50%, $color 50%), linear-gradient(to bottom, transparent 50%, $color 50%), linear-gradient(to left,transparent 50%, $color 50%)
+      background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%
+      background-position: top center, right center, bottom center, left center
+      border: none
+      padding: 1px
+    else
+      border-{$direction}: none
+      padding-{$direction}: 1px
+      background-position: $direction center
+      background-image: -webkit-linear-gradient($direction, transparent 50%, $color 50%)
+      background-image: linear-gradient(to $direction, transparent 50%, $color 50%)
+      if $direction == top || $direction == bottom
+        background-size: 100% 1px
+      if $direction == left || $direction == right
+        background-size: 1px 100%
+
+
+
+$1x2Img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAMAAACuX0YVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF/wAAAAAAQaMSAwAAAAJ0Uk5T/wDltzBKAAAADklEQVR42mJgYGAECDAAAAUAAoeC334AAAAASUVORK5CYII='
+$2x1Img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAMAAADD/I+4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF/wAAAAAAQaMSAwAAAAJ0Uk5T/wDltzBKAAAADUlEQVR42mJgYAQIMAAABAACy28YcwAAAABJRU5ErkJggg=='
+
+hairline-bgimg-base64($direction = all)
+  .hairlines &
+    if $direction == all
+      padding: 1px
+      border: none
+      background-image: url($1x2Img), url($2x1Img), url($1x2Img), url($2x1Img)
+      background-size: 1px 1px, 1px 1px, 1px 1px, 1px 1px
+      background-position: 0 0, 100% 0, 0 100%, 0 0
+      background-repeat: repeat-x, repeat-y, repeat-x, repeat-y
+    else
+      padding-{$direction}: 1px
+      border-{$direction}: none
+      background-size: 1px 1px
+      if $direction == top
+        background-repeat: repeat-x
+        background-position: 0 0
+        background-image: url($1x2Img)
+      if $direction == right
+        background-repeat: repeat-y
+        background-position: 100% 0
+        background-image: url($2x1Img)
+      if $direction == bottom
+        background-repeat: repeat-x
+        background-position: 0 100%
+        background-image: url($1x2Img)
+      if $direction == left
+        background-repeat: repeat-y
+        background-position: 0 0
+        background-image: url($2x1Img)
