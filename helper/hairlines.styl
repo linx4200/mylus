@@ -60,3 +60,10 @@ hairline-bgimg-base64($direction = all)
         background-repeat: repeat-y
         background-position: 0 0
         background-image: url($2x1Img)
+
+$border = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAChJREFUeNpi+s/A8B8dszCAwP//jAwwwMj4n4kBC8AqyALTgiwIEGAAmUAOBlDMlOoAAAAASUVORK5CYII='
+
+hairline-borderimg()
+  border-width: 1px
+  .hairlines &
+    border-image: url($border) 2 repeat
