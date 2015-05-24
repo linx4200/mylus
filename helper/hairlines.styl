@@ -120,3 +120,22 @@ hairline-scale($color, $direction = all)
           top: 0
           transform: scaleX(0.5)
           transform-origin: 0 0
+
+hairline-boxShadow($color, $direction = all)
+  if $direction == all
+    border: 1px solid $color
+    .hairlines &
+      border: none
+      box-shadow: 0 -1px 0 -0.5px $color, 1px 0 0 -0.5px $color, 0 1px 0 -0.5px $color, -1px 0 0 -0.5px $color
+  else
+    border-{$direction}: 1px solid $color
+    .hairlines &
+      border-{$direction}: none
+      if $direction == top
+        box-shadow: 0 -1px 0 -0.5px $color
+      if $direction == right
+        box-shadow: 1px 0 0 -0.5px $color
+      if $direction == bottom
+        box-shadow: 0 1px 0 -0.5px $color
+      if $direction == left
+        box-shadow: -1px 0 0 -0.5px $color
