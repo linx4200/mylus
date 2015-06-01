@@ -1,15 +1,16 @@
 /* sprite mixin
- * version 在settings中设置
  */
 
-bgImage($url)
-    background-image: s('url(%s)', $version is defined ? $url + '?' + $version : $url)
-    background-size: (image-size($url)[0] / 2) (image-size($url)[1] / 2)
-    background-repeat: no-repeat
+$spriteImg = 'path/to/spriteImg.png'
 
-sprite($url, $width, $height, $posX, $posY)
-    display: inline-block
-    width: ($width / 2)
-    height: ($height / 2)
-    bgImage($url)
-    background-position: ($posX/2) ($posY/2)
+sprite-bg()
+  background-image: url($spriteImg)
+  background-size: $spriteW $spriteH
+  background-repeat: no-repeat
+
+sprite-pos($posX, $posY)
+  background-position: ($posX/2) ($posY/2)
+
+sprite($posX, $posY)
+  sprite-bg()
+  sprite-pos($posX, $posY)
