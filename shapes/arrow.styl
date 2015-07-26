@@ -1,0 +1,89 @@
+/* http://codepen.io/linx4200/pen/yNREEK */
+
+$arrow-direction-map = {
+  top: "top" "right",
+  right: "right" "bottom",
+  bottom: "left" "bottom",
+  left: "top" "left"
+}
+
+arrow($size, $direction = top, $color = black)
+  +p-el(after, $size, $size)
+    display: block
+    border-width: 1px
+    border-color: $color
+    transform: rotate(-45deg)
+    border-{$arrow-direction-map[$direction][0]}-style: solid
+    border-{$arrow-direction-map[$direction][1]}-style: solid
+
+/*================================Use======================
+.arrow-top
+  arrow(6px)
+
+.arrow-right
+  arrow(6px, right, red)
+
+.arrow-bottom
+  arrow(10px, bottom)
+
+.arrow-left
+  arrow(20px, left, #f79100)
+
+=============================Output========================
+.arrow-top {
+  position: relative;
+}
+.arrow-top::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  display: block;
+  border-width: 1px;
+  border-color: #000;
+  transform: rotate(-45deg);
+  border-top-style: solid;
+  border-right-style: solid;
+}
+.arrow-right {
+  position: relative;
+}
+.arrow-right::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  display: block;
+  border-width: 1px;
+  border-color: #f00;
+  transform: rotate(-45deg);
+  border-right-style: solid;
+  border-bottom-style: solid;
+}
+.arrow-bottom {
+  position: relative;
+}
+.arrow-bottom::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  display: block;
+  border-width: 1px;
+  border-color: #000;
+  transform: rotate(-45deg);
+  border-left-style: solid;
+  border-bottom-style: solid;
+}
+.arrow-left {
+  position: relative;
+}
+.arrow-left::after {
+  content: '';
+  width: 20px;
+  height: 20px;
+  display: block;
+  border-width: 1px;
+  border-color: #f79100;
+  transform: rotate(-45deg);
+  border-top-style: solid;
+  border-left-style: solid;
+}
+============================================================*/
