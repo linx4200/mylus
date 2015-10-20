@@ -3,19 +3,16 @@
  */
 
 p-el($el, $el-width = null, $el-height = null)
-    if($el == 'before' || $el == 'after')
-        &
-          position: relative unless @position
-        &::{$el}
-          content: ''
-          // position: absolute
-          if($el-width)
-            width: $el-width
-          if($el-height)
-            height: $el-height
-          {block}
-    else
-        error($el + 'is not a valid pseudo-element.')
+  if($el == 'before' || $el == 'after')
+    &
+      position: relative unless @position
+    &::{$el}
+      content: ''
+      width: $el-width if $el-width
+      height: $el-height  if $el-width
+      {block}
+  else
+    error($el + 'is not a valid pseudo-element.')
 
 /*================================Use======================
 .icon-toggle
