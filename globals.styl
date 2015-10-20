@@ -16,5 +16,9 @@
 .hidden
     visibility: hidden
 
+$spriteImg = 'path/to/spriteImg.png'
+$spriteImgW = 50px
+$spriteImgH = 50px
+
 .sprite, .s-b::before, .s-a::after
-  sprite-bg()
+  sprite-bg($spriteImg, $spriteImgW, $spriteImgH)
