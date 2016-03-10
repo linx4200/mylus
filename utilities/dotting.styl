@@ -1,0 +1,11 @@
+/* http://www.zhangxinxu.com/wordpress/2014/12/css3-animation-dotting-loading/ */
+
+dotting($currentColor)
+  display: inline-block
+  min-width: 2px
+  min-height: 2px
+  box-shadow: 2px 0 $currentColor, 6px 0 $currentColor, 10px 0 $currentColor /* for IE9+, ..., 3个点 */
+  animation: dot 2s infinite step-start both /* for IE10+, ... */
+  :root &
+    margin-right: 8px /* for IE9+,FF,CH,OP,SF 占据空间*/
+

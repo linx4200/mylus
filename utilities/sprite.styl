@@ -1,0 +1,15 @@
+$sprite = 'path/to/sprite.png'
+$spriteW = 500px
+$spriteH = 500px
+
+sprite-bg($url = $sprite, $w = $spriteW, $h = $spriteH)
+  background-image: url($url)
+  background-size: ($w/2) ($h/2)
+  background-repeat: no-repeat
+
+sprite-pos($posX, $posY)
+  background-position: ($posX/2) ($posY/2)
+
+sprite($posX, $posY)
+  sprite-bg()
+  sprite-pos($posX, $posY)

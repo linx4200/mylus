@@ -26,3 +26,6 @@ size()
   else
     width: arguments[0]
     height: arguments[1]
+
+sizeBaseOnImg($url)
+  size: (image-size($url)[0] / 2) (image-size($url)[1] / 2)

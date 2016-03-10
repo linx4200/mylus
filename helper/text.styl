@@ -23,3 +23,18 @@ ellipsis(no-wrap = true)
     white-space: nowrap
   overflow: hidden
   text-overflow: ellipsis
+
+mlellipsis(font-size, line-height, lines-to-show)
+  display block /* Fallback for non-webkit */
+  display -webkit-box
+  // height font-size*line-height*lines-to-show /* Fallback for non-webkit */
+  max-height font-size*line-height*lines-to-show /* Fallback for non-webkit */
+  font-size font-size
+  line-height line-height
+  -webkit-line-clamp lines-to-show
+  -webkit-box-orient vertical
+  overflow hidden
+  text-overflow ellipsis
+
+word-break()
+  word-break: break-all

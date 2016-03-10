@@ -1,142 +1,112 @@
-/* http://codepen.io/linx4200/full/rVMbJa */
-/* http://xinranliu.me/2015-05-09-1px-in-retina/ */
+//http://www.w3cplus.com/sites/default/files/blogs/2014/1408/h5-share/retina.html
 
-hairline-bgimg-gradient($color, $direction = all)
-  if $direction == all
-    border: 1px solid $color
-  else
-    border-{$direction}: 1px solid $color
-  .hairlines &
-    background-repeat: no-repeat;
-    if $direction == all
-      background-image: -webkit-linear-gradient(top, $color 50%, #999 50%), -webkit-linear-gradient(right, transparent 50%, $color 50%), -webkit-linear-gradient(bottom, transparent 50%, $color 50%), -webkit-linear-gradient(left, transparent 50%, $color 50%)
-      background-image: linear-gradient(to top, transparent 50%, $color 50%), linear-gradient(to right, transparent 50%, $color 50%), linear-gradient(to bottom, transparent 50%, $color 50%), linear-gradient(to left,transparent 50%, $color 50%)
-      background-size: 100% 1px, 1px 100%, 100% 1px, 1px 100%
-      background-position: top center, right center, bottom center, left center
+$lightgrey = #eaeaea
+$greybase64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEXW1taWrGEgAAAACklEQVQIHWNgAAAAAgABz8g15QAAAABJRU5ErkJggg=='
+// 1px.png
+$lightgreyTop = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAQAAAAziH6sAAAADklEQVQIHWN49Z+BgQEACJQB6qv4qWwAAAAASUVORK5CYII='
+// 1pxright.png
+$lightgreyRight = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAQAAABeK7cBAAAADUlEQVQIHWNgYHj1HwAC2AHqBdW9WQAAAABJRU5ErkJggg=='
+
+hairlines($direction = 'all', $color = #d6d6d6)
+  if $direction == 'all'
+    if $color == 'none'
       border: none
-      padding: 1px
     else
-      border-{$direction}: none
-      padding-{$direction}: 1px
-      background-position: $direction center
-      background-image: -webkit-linear-gradient($direction, transparent 50%, $color 50%)
-      background-image: linear-gradient(to $direction, transparent 50%, $color 50%)
-      if $direction == top || $direction == bottom
-        background-size: 100% 1px
-      if $direction == left || $direction == right
-        background-size: 1px 100%
-
-
-
-$1x2Img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAMAAACuX0YVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF/wAAAAAAQaMSAwAAAAJ0Uk5T/wDltzBKAAAADklEQVR42mJgYGAECDAAAAUAAoeC334AAAAASUVORK5CYII='
-$2x1Img = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAABCAMAAADD/I+4AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF/wAAAAAAQaMSAwAAAAJ0Uk5T/wDltzBKAAAADUlEQVR42mJgYAQIMAAABAACy28YcwAAAABJRU5ErkJggg=='
-
-hairline-bgimg-base64($direction = all)
-  .hairlines &
-    if $direction == all
-      padding: 1px
-      border: none
-      background-image: url($1x2Img), url($2x1Img), url($1x2Img), url($2x1Img)
-      background-size: 1px 1px, 1px 1px, 1px 1px, 1px 1px
-      background-position: 0 0, 100% 0, 0 100%, 0 0
-      background-repeat: repeat-x, repeat-y, repeat-x, repeat-y
-    else
-      padding-{$direction}: 1px
-      border-{$direction}: none
-      background-size: 1px 1px
-      if $direction == top
-        background-repeat: repeat-x
-        background-position: 0 0
-        background-image: url($1x2Img)
-      if $direction == right
-        background-repeat: repeat-y
-        background-position: 100% 0
-        background-image: url($2x1Img)
-      if $direction == bottom
-        background-repeat: repeat-x
-        background-position: 0 100%
-        background-image: url($1x2Img)
-      if $direction == left
-        background-repeat: repeat-y
-        background-position: 0 0
-        background-image: url($2x1Img)
-
-$border = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAChJREFUeNpi+s/A8B8dszCAwP//jAwwwMj4n4kBC8AqyALTgiwIEGAAmUAOBlDMlOoAAAAASUVORK5CYII='
-
-hairline-borderimg()
-  border-width: 1px
-  .hairlines &
-    border-image: url($border) 2 repeat
-
-
-hairline-scale($color, $direction = all)
-  if $direction == all
-    border: 1px solid $color
-    .hairlines &
-      position: relative
-      border: none
-      &::after
-        content: ''
-        position: absolute
-        width: 200%
-        height: 200%
-        top: 0
-        left: 0
-        transform: scale(0.5)
-        transform-origin: 0 0
-        box-sizing: border-box
-        border: 1px solid $color
-        pointer-events: none
+      border: 1px solid $color
+      .hairlines &
+        background-image: -webkit-linear-gradient(top,transparent 50%,$color 50%),
+        -webkit-linear-gradient(right,transparent 50%,$color 50%),
+        -webkit-linear-gradient(bottom,transparent 50%,$color 50%),
+        -webkit-linear-gradient(left,transparent 50%,$color 50%)
+        background-image:linear-gradient(to top,transparent 50%,$color 50%),
+        linear-gradient(to right,transparent 50%,$color 50%),
+        linear-gradient(to bottom,transparent 50%,$color 50%),
+        linear-gradient(to left,transparent 50%,$color 50%)
+        background-size: 100% 1px,1px 100%,100% 1px,1px 100%
+        background-repeat: no-repeat
+        background-position: top center,right center,bottom center,left center
+        border:0 none;
   else
-    border-{$direction}: 1px solid $color
-    .hairlines &
+    if $color == 'none'
       border-{$direction}: none
-      position: relative
-      &::after
-        content: ''
-        position: absolute
-        {$direction}: 0
+      background: none
+    else
+      border-{$direction}: 1px solid $color
+      .hairlines &
+        border-{$direction}: none
+        background-size: 1px 1px
+        // padding-{$direction}: 1px
+        if $direction == 'top'
+          if $color == #eaeaea
+           background-image: url($lightgreyTop)
+          else
+            background-image: url($greybase64)
+          background-position: 0 0
+          background-repeat: repeat-x
+        if $direction == 'right'
+          if $color == #eaeaea
+           background-image: url($lightgreyRight)
+          else
+            background-image: url($greybase64)
+          background-position: 100% 0
+          background-repeat: repeat-y
+        if $direction == 'bottom'
+          if $color == #eaeaea
+           background-image: url($lightgreyTop)
+          else
+            background-image: url($greybase64)
+          background-position: 0 100%
+          background-repeat: repeat-x
+        if $direction == 'left'
+          background-position: 0 0
+          background-repeat: repeat-y
+
+hairlines-p-el($direction, $color = #d6d6d6)
+  border-{$direction}: 1px solid $color
+  .hairlines &
+    border-{$direction}: none
+    if $direction == 'top'
+      +p-el(after, 100%, 1px)
+        absolute(top 0 left 0 right 0)
         background: $color
-        if $direction == top
-          width: 100%
-          height: 1px
-          left: 0
-          transform: scaleY(0.5)
-          transform-origin: 0 0
-        if $direction == right
-          width: 1px
-          height: 100%
-          top: 0
-          transform: scaleX(0.5)
-          transform-origin: 0 100%
-        if $direction == bottom
-          width: 100%
-          height: 1px
-          left: 0
-          transform: scaleY(0.5)
-          transform-origin: 0 100%
-        if $direction == left
-          width: 1px
-          height: 100%
-          top: 0
-          transform: scaleX(0.5)
-          transform-origin: 0 0
+        transform: scaleY(0.5)
+    if $direction == 'right'
+      +p-el(after, 1px, 100%)
+        absolute(top 0 bottom 0 right 0)
+        background: $color
+        transform: scaleX(0.5)
+    if $direction == 'bottom'
+      +p-el(after, 100%, 1px)
+        absolute(bottom 0 left 0 right 0)
+        background: $color
+        transform: scaleY(0.5)
+    if $direction == 'left'
+      +p-el(after, 1px, 100%)
+        absolute(top 0 bottom 0 left 0)
+        background: $color
+        transform: scaleY(0.5)
 
-hairline-boxShadow($color, $direction = all)
-  if $direction == all
-    border: 1px solid $color
-    .hairlines &
-      border: none
-      box-shadow: 0 -1px 0 -0.5px $color, 1px 0 0 -0.5px $color, 0 1px 0 -0.5px $color, -1px 0 0 -0.5px $color
-  else
-    border-{$direction}: 1px solid $color
-    .hairlines &
-      border-{$direction}: none
-      if $direction == top
-        box-shadow: 0 -1px 0 -0.5px $color
-      if $direction == right
-        box-shadow: 1px 0 0 -0.5px $color
-      if $direction == bottom
-        box-shadow: 0 1px 0 -0.5px $color
-      if $direction == left
-        box-shadow: -1px 0 0 -0.5px $color
+hairlines-p-el-before($direction, $color = #d6d6d6)
+  border-{$direction}: 1px solid $color
+  .hairlines &
+    border-{$direction}: none
+    if $direction == 'top'
+      +p-el(before, 100%, 1px)
+        absolute(top 0 left 0 right 0)
+        background: $color
+        transform: scaleY(0.5)
+    if $direction == 'right'
+      +p-el(before, 1px, 100%)
+        absolute(top 0 bottom 0 right 0)
+        background: $color
+        transform: scaleX(0.5)
+    if $direction == 'bottom'
+      +p-el(before, 100%, 1px)
+        absolute(bottom 0 left 0 right 0)
+        background: $color
+        transform: scaleY(0.5)
+    if $direction == 'left'
+      +p-el(before, 1px, 100%)
+        absolute(top 0 bottom 0 left 0)
+        background: $color
+        transform: scaleY(0.5)
